@@ -1,0 +1,6 @@
+home:
+  path: /
+  defaults: { _controller: JwtApp\Infrastructure\Delivery\Http\Controller\DefaultController::indexAction }
+
+api_login_check:
+  path: /api/login_check

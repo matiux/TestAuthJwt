@@ -1,0 +1,15 @@
+JwtApp\Domain\Model\User\User:
+  type: entity
+  table: users
+  repositoryClass: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserRepository
+  id:
+    utenteId:
+      type: UserId
+      column: id
+  fields:
+    email:
+      type: UserEmail
+      nullable: false
+    password:
+      type: HashedUserPassword
+      nullable: false
