@@ -4,13 +4,13 @@ namespace JwtApp\Domain\Model\User;
 
 class User
 {
-    protected $utenteId;
+    protected $userId;
     protected $email;
     protected $password;
 
-    public function __construct(UserId $utenteId, UserEmail $email, HashedUserPassword $password)
+    public function __construct(UserId $userId, UserEmail $email, HashedUserPassword $password)
     {
-        $this->utenteId = $utenteId;
+        $this->userId = $userId;
         $this->email = $email;
         $this->password = $password;
     }

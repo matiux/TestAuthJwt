@@ -5,14 +5,14 @@ parameters:
 
 services:
   # default configuration for services in *this* file
-#  _defaults:
-#    # automatically injects dependencies in your services
-#    autowire: true
-#    # automatically registers your services as commands, event subscribers, etc.
-#    autoconfigure: true
-#    # this means you cannot fetch services directly from the container via $container->get()
-#    # if you need to do this, you can override this setting on individual services
-#    public: false
+  #  _defaults:
+  #    # automatically injects dependencies in your services
+  #    autowire: true
+  #    # automatically registers your services as commands, event subscribers, etc.
+  #    autoconfigure: true
+  #    # this means you cannot fetch services directly from the container via $container->get()
+  #    # if you need to do this, you can override this setting on individual services
+  #    public: false
 
   jwtapp.password_hashing.service:
     class: JwtApp\Infrastructure\Domain\Model\User\BasicPasswordHashing
@@ -20,11 +20,15 @@ services:
   jwtapp.user.repository:
     class: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserRepository
     factory: ['@doctrine', getRepository]
-    arguments: ['JwtApp\Domain\Model\User\User']
+    arguments: ['JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUser']
+
+  jwtapp.user_factory:
+    class: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserFactory
 
   jwtapp.create_user.service:
     class: JwtApp\Domain\Service\User\CreateUserService
     arguments:
+    - '@jwtapp.user_factory'
     - '@jwtapp.user.repository'
     - '@jwtapp.password_hashing.service'
 
@@ -36,9 +40,19 @@ services:
     arguments:
     - '@jwtapp.create_user.service'
 
-#  jwtapp.jwt_token_authenticator:
-#      class: JwtApp\Infrastructure\Application\Service\JWTTokenAuthenticator
-#      parent: lexik_jwt_authentication.security.guard.jwt_token_authenticator
+  #  jwtapp.user_provider:
+  #    class: JwtApp\Infrastructure\Application\Service\User\UserProvider
+  #    arguments:
+  #      - '@jwtapp.user.repository'
+
+  security.user.provider.concrete.jwt:
+    class: JwtApp\Infrastructure\Application\Service\User\UserProvider
+    arguments:
+    - '@jwtapp.user.repository'
+
+  #  jwtapp.jwt_token_authenticator:
+  #      class: JwtApp\Infrastructure\Application\Service\JWTTokenAuthenticator
+  #      parent: lexik_jwt_authentication.security.guard.jwt_token_authenticator
 
   # makes classes in src/AppBundle available to be used as services
   # this creates a service per class whose id is the fully-qualified class name

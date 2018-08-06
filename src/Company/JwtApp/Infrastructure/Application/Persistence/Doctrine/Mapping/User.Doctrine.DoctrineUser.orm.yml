@@ -1,9 +1,9 @@
-JwtApp\Domain\Model\User\User:
+JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUser:
   type: entity
   table: users
   repositoryClass: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserRepository
   id:
-    utenteId:
+    userId:
       type: UserId
       column: id
   fields:

@@ -3,22 +3,10 @@
 namespace JwtApp\Infrastructure\Domain\Model\User\Doctrine;
 
 use JwtApp\Domain\Model\User\User;
-use Lexik\Bundle\JWTAuthenticationBundle\Security\User\JWTUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class DoctrineUser extends User implements JWTUserInterface
+class DoctrineUser extends User implements UserInterface
 {
-    /**
-     * Creates a new instance from a given JWT payload.
-     *
-     * @param string $username
-     * @param array $payload
-     *
-     * @return JWTUserInterface
-     */
-    public static function createFromPayload($username, array $payload)
-    {
-
-    }
 
     /**
      * Returns the roles granted to the user.
@@ -38,7 +26,9 @@ class DoctrineUser extends User implements JWTUserInterface
      */
     public function getRoles()
     {
+        $role = ['User'];
 
+        return $role;
     }
 
     /**
@@ -51,7 +41,9 @@ class DoctrineUser extends User implements JWTUserInterface
      */
     public function getPassword()
     {
+        $password = $this->password->password();
 
+        return $password;
     }
 
     /**
@@ -63,7 +55,7 @@ class DoctrineUser extends User implements JWTUserInterface
      */
     public function getSalt()
     {
-
+        return null;
     }
 
     /**
@@ -84,6 +76,6 @@ class DoctrineUser extends User implements JWTUserInterface
      */
     public function eraseCredentials()
     {
-
+        //??
     }
 }

@@ -4,6 +4,7 @@ namespace JwtApp\Infrastructure\Domain\Model\User\Doctrine;
 
 use Doctrine\ORM\EntityRepository;
 use JwtApp\Domain\Model\User\User;
+use JwtApp\Domain\Model\User\UserEmail;
 use JwtApp\Domain\Model\User\UserId;
 use JwtApp\Domain\Model\User\UserRepository;
 
@@ -19,5 +20,12 @@ class DoctrineUserRepository extends EntityRepository implements UserRepository
         $this->getEntityManager()->persist($user);
 
         $this->getEntityManager()->flush();
+    }
+
+    public function ofEmail(UserEmail $email): ?User
+    {
+        $user = $this->findOneByEmail($email);
+
+        return $user;
     }
 }
