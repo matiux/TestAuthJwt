@@ -6,9 +6,6 @@ security:
     providers:
         jwt: # optional, any user provider can be used
             lexik_jwt: ~
-#                class: JwtApp\Infrastructure\Application\Service\User\UserProvider
-#        database: # optional, any user provider can be used
-#            id: jwtapp.user_provider
 
     encoders:
         JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUser:

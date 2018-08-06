@@ -41,7 +41,7 @@ Il container php è configurato per far comunicare Xdebug con PhpStorm
 
 ## Ottenere un token
 ```
-POST localhost:8080/app_dev.php/api/login_check
+POST http://localhost:8080/app_dev.php/api/login_check
 ```
 Body della chiamata:
 ```json
@@ -49,4 +49,17 @@ Body della chiamata:
 	"username":"utente@dominio.it",
 	"password":"password"
 }
+```
+## Accedere
+```
+GET http://localhost:8080/app_dev.php/api/hello
+```
+Passare l'header 
+```
+Authorization: Bearer [token]
+```
+
+Oppure tramite query string:
+```
+GET http://localhost:8080/app_dev.php/api/hello?token=[token]
 ```
