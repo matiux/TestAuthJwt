@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "bb58ba30-026a-4307-b04b-a0d8c8abd8d2",
+		"name": "TestAuthJwt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "93525e56-6d25-44b1-b62a-abb032fa8f85",
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"utente@dominio.it\",\n\t\"password\":\"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/app_dev.php/api/login_check",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app_dev.php",
+						"api",
+						"login_check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "ac58c43f-8dc9-4dce-9550-1f21bc623723",
+			"name": "Hello",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1MzM1ODUzNTUsImV4cCI6MTUzMzU4NTM3NSwicm9sZXMiOlsidXNlciJdLCJ1c2VybmFtZSI6InV0ZW50ZUBkb21pbmlvLml0In0.Pv1N1_NtpN5HdaYP2emTePLAIE0V3ZjEUG19OMsb8xeV1NLCpHGh7yYa590w1Or6yBvi7L9MkdZ1sCsnIN-ay6ZeoDt7Hk1Dbe0L20U9-k4QOF4lu8Fy-ZcVlGtSmFkQ-GnHJsSTpuEtDbJBdz7DX2cXTKZrqpxOL4V6o8yjGfCIVNGSOMaeWxtC6Cipr7AJR7aAy0vx9JsrRGJQAqiBMZ8icc3HA0J5C_DZeUOeAWpizbjuuMJ26GMwXMmwMgUWTA96LtO7JzZTsa6fZtr3uiF2ujJvFwevDN4h9taUNB3viX3CCbBnHtq8jdXl6XyUsFQ0ppof6hxXCIeilj9T6-04pu6iWFsXIUyW59naBHSVcZh2ZfsYlfYymqafa0llCjc3dLZZvWsS5_t-oYRCymmkTqOb8-sUORDpeO2fO6K-zNlvM89JsxdMQHOGCN1l-u4tYxuFaOOPNKle0TeF8LTA_o2NaGsPiFpAA_DFq5H5v0QHBWCxTg0PaDmI81y1EGsMvP-s2kIBEq_4Hxq5WGDN6nzzAwPxAiXRX5KPW-efkeGfNYdKkDts6iFH32jnOHzGmxfKyixj-OdYcGUkCMqswIqKNauEAczfjJw027NtYN8fNQT8u4Tw5g_fDn9m4vn6L6_V2n6Td2Ui5p8z42AyvmdVkmgPis8Un2UYsJM"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/app_dev.php/api/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app_dev.php",
+						"api",
+						"hello"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "b36b18d8-3f01-4352-a0a9-e184efe1b4dd",
+			"name": "Refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"refresh_token\":\"d6ffb705e3025f030ea6356b24c46dd57840c4d3a5d876f4d3ffd7b9726925ef2d903c79c61e0f912a4d459506b16eefb987f8ddaa2944583bf5dbeb5ebb8648\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/app_dev.php/api/token/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"app_dev.php",
+						"api",
+						"token",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
