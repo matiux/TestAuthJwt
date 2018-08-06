@@ -1,15 +1,7 @@
-Boilerplate Symfony con struttura cartelle DDD
+Test JWT con Bundle LexikJWTAuthenticationBundle
 ========================
 
-Symfony 3.4 con struttuca cartelle per modellare in DDD
-
-## Preparazione ambiente sviluppo
-L'applicazione funziona all'interno di un conainer docker. Preparare l'ambiente in questo modo:
-
-#### Clone del progetto
-```
-git clone git@github.com:matiux/SymfonyDDDBoilerplate.git && cd SymfonyDDDBoilerplate
-```
+Symfony 3.4 bundle LexikJWTAuthenticationBundle
 
 #### Variabili d'ambiente
 ```
@@ -19,17 +11,19 @@ cp env.dist .env
 ```
 ./dc up -d
 ```
-#### Smontare i containers e i volumi
-```
-./dc down -v
-```
 Per ulteriori informazioni controllare il readme in `./docker/redme.md`
 ## Sviluppo
 
 #### Entrare nel container PHP per lo sviluppo
 ```
-./dc exec --user utente php bash
+./dc enter
 composer install
+```
+#### Creare le chaivi per la generazione del token
+```
+$ mkdir -p app/config/jwt
+$ openssl genrsa -out app/config/jwt/private.pem -aes256 4096
+$ openssl rsa -pubout -in app/config/jwt/private.pem -out app/config/jwt/public.pem
 ```
 Il container php è configurato per far comunicare Xdebug con PhpStorm
 
@@ -40,25 +34,19 @@ Il container php è configurato per far comunicare Xdebug con PhpStorm
 * All'interno del container PHP, il database è raggiungibile con l'host `servicedb` alla porta `3306`
 * All'esterno del container, il database è raggiungibile con l'host `127.0.0.1` alla porta `3307`
 
-## Comandi e Aliases all'interno del container PHP
-
-* `test` è un alias a `vendor/bin/phpunit`
-* `sf` è un alias a `bin/console` per usare la console di Symfony
-* `sfcc` è un alias a `rm -Rf var/cache/*` per svuotare la cache
-* `memflush` è un alias a `echo \"flush_all\" | nc servicememcached 11211 -q 1"` per svuotare memcached
-
-## Test
-All'interno del container PHP
+## Creare un utente nel db:
 ```
-test
-test --group integration
-test --group unit
+./sf jwtapp:user:create utente@dominio.it password
 ```
 
-## Fix permessi Symfony:
-
-Da dentro al container php:
-
+## Ottenere un token
 ```
-./fix-permissions
+POST localhost:8080/app_dev.php/api/login_check
+```
+Body della chiamata:
+```json
+{
+	"username":"utente@dominio.it",
+	"password":"password"
+}
 ```

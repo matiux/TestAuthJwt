@@ -19,3 +19,4 @@ parameters:
     secret: ThisTokenIsNotSoSecretChangeIt
 
     mysql_version: 5.7
+    jwt_pass_phrase: pass_phrase
