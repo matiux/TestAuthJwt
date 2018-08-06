@@ -63,6 +63,7 @@ doctrine:
       UserId: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserId
       UserEmail: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUserEmail
       HashedUserPassword: JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineHashedUserPassword
+      Role: JwtApp\Infrastructure\Domain\Model\Role\Doctrine\DoctrineRole
 
   orm:
     auto_generate_proxy_classes: '%kernel.debug%'
@@ -93,8 +94,13 @@ lexik_jwt_authentication:
   secret_key: '%kernel.root_dir%/config/jwt/private.pem' # required for token creation
   public_key: '%kernel.root_dir%/config/jwt/public.pem'  # required for token verification
   pass_phrase: '%jwt_pass_phrase%' # required for token creation, usage of an environment variable is recommended
-  token_ttl: 3600
+  #token_ttl: 3600 #1ora
+  token_ttl: 20
   token_extractors:
     query_parameter:
       enabled: true
       name: token
+
+gesdinet_jwt_refresh_token:
+  ttl: 2592000 #1 mese
+  user_identity_field: email

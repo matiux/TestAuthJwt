@@ -13,3 +13,6 @@ JwtApp\Infrastructure\Domain\Model\User\Doctrine\DoctrineUser:
     password:
       type: HashedUserPassword
       nullable: false
+    role:
+      type: Role
+      nullable: false

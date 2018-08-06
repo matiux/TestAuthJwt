@@ -5,6 +5,10 @@ home:
 api_login_check:
   path: /api/login_check
 
+gesdinet_jwt_refresh_token:
+  path:     /api/token/refresh
+  defaults: { _controller: gesdinet.jwtrefreshtoken:refresh }
+
 api_hello:
   path: /api/hello
   defaults: { _controller: JwtApp\Infrastructure\Delivery\Http\Controller\HelloController::hello }

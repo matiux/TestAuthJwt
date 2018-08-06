@@ -26,7 +26,7 @@ class DoctrineUser extends User implements UserInterface
      */
     public function getRoles()
     {
-        $role = ['User'];
+        $role = [$this->role->type()];
 
         return $role;
     }

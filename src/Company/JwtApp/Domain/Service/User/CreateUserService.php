@@ -2,6 +2,7 @@
 
 namespace JwtApp\Domain\Service\User;
 
+use JwtApp\Domain\Model\Role\Role;
 use JwtApp\Domain\Model\User\NotHashedUserPassword;
 use JwtApp\Domain\Model\User\PasswordHashing;
 use JwtApp\Domain\Model\User\User;
@@ -22,12 +23,12 @@ class CreateUserService
         $this->passwordHashing = $passwordHashing;
     }
 
-    public function execute(UserEmail $email, NotHashedUserPassword $password): User
+    public function execute(UserEmail $email, NotHashedUserPassword $password, Role $role): User
     {
         $userId = $this->userRepository->nextIdentity();
         $hashedPassword = $this->passwordHashing->hash($password);
 
-        $user = $this->userFactory->create($userId, $email, $hashedPassword);
+        $user = $this->userFactory->create($userId, $email, $hashedPassword, $role);
 
         $this->userRepository->add($user);
 

@@ -2,6 +2,7 @@
 
 namespace JwtApp\Infrastructure\Delivery\Console\User;
 
+use JwtApp\Domain\Model\Role\Role;
 use JwtApp\Domain\Model\User\NotHashedUserPassword;
 use JwtApp\Domain\Model\User\UserEmail;
 use JwtApp\Domain\Service\User\CreateUserService;
@@ -41,7 +42,8 @@ class CreateUserCommand extends ContainerAwareCommand
 
         $this->createUserService->execute(
             new UserEmail($email),
-            new NotHashedUserPassword($password)
+            new NotHashedUserPassword($password),
+            Role::user()
         );
     }
 }
